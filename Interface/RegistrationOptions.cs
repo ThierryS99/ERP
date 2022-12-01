@@ -1,5 +1,4 @@
-﻿using ERP.ProductFeatures;
-using ERP.ProductionOrders;
+﻿using ERP.ProductionOrders;
 using ERP.Products;
 using System;
 using System.Collections.Generic;
@@ -21,7 +20,7 @@ namespace ERP.Interface
             Console.WriteLine();
             Console.Write("CÓDIGO: ");
             product.ProductId = Console.ReadLine();
-            Product.DescriptionRegitration();
+            Product.DescriptionRegitration(product.PrimaryDescription, product.SecondaryDescription);
             Console.WriteLine();
             Console.Write("O ROTEIRO do produto já está cadastrado? (S/N): ");
             char option = char.Parse(Console.ReadLine().ToUpper());
@@ -56,7 +55,7 @@ namespace ERP.Interface
 
         public static void GuideRegistration() // CADASTRO DO ROTEIRO
         {
-            Guide newGuide = new Guide();
+            Sequence newsequence = new Sequence();
 
 
         }
