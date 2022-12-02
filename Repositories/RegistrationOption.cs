@@ -1,16 +1,16 @@
-﻿using ERP.ProductionOrders;
-using ERP.Products;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ERP.Models;
+using ERP.ProductionOrders;
+using ERP.Interface;
+using Dapper.Contrib.Extensions;
+using Microsoft.Data.SqlClient;
 
-namespace ERP.Interface
+
+namespace ERP.Repositories
 {
-    class RegistrationOptions
+    class RegistrationOption
     {
+        private const string CONNECTION_STRING = @"Server=localhost,1433; Database=ErpServer; User ID=sa; Password=1q2w3e4r@#$; TrustServerCertificate=True";
+
         public static void ProductRegistration() // CADASTRO DO PRODUTO
         {
             Product product = new Product();
@@ -20,7 +20,16 @@ namespace ERP.Interface
             Console.WriteLine();
             Console.Write("CÓDIGO: ");
             product.ProductId = Console.ReadLine();
-            Product.DescriptionRegitration(product.PrimaryDescription, product.SecondaryDescription);
+            Product.DescriptionRegistration(product.PrimaryDescription, product.SecondaryDescription);
+
+            using (var connection = new SqlConnection(CONNECTION_STRING))
+            {
+                connection.Insert<Product>(product);
+                {
+                    Console.Clear();
+                    Console.WriteLine("Cadastro realizado com sucesso!");
+                }
+            }
             Console.WriteLine();
             Console.Write("O ROTEIRO do produto já está cadastrado? (S/N): ");
             char option = char.Parse(Console.ReadLine().ToUpper());
@@ -55,7 +64,7 @@ namespace ERP.Interface
 
         public static void GuideRegistration() // CADASTRO DO ROTEIRO
         {
-            Sequence newsequence = new Sequence();
+            Sequence newGuide = new Sequence();
 
 
         }
@@ -125,6 +134,7 @@ namespace ERP.Interface
             Console.ReadKey();
             MenuApplication.Menu();
         }
+
         public static void ProductionOrderRegistration() // CADASTRO DE ORDEM DE PRODUÇÃO.
         {
             Console.Clear();
@@ -154,9 +164,9 @@ namespace ERP.Interface
                 Console.WriteLine();
                 Console.Write("Deseja cadastrar um PEDIDO DE VENDA? (S/N): ");
                 option = char.Parse(Console.ReadLine().ToUpper());
-                if(option == 'S')
+                if (option == 'S')
                 {
-                    RegistrationOptions.SalesOrderRegistration();
+                    RegistrationOption.SalesOrderRegistration();
                 }
                 else if (option == 'N')
                 {

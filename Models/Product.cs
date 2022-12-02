@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Dapper.Contrib.Extensions;
 
-namespace ERP.Products
+namespace ERP.Models
 {
+    [Table("[Product]")]
+
     public class Product
     {
         public string ProductId { get; set; }
@@ -21,7 +24,7 @@ namespace ERP.Products
             SecondaryDescription = secondaryDescription;
         }
 
-        public static void DescriptionRegitration(string primaryDescription, string secondaryDescription)
+        public static void DescriptionRegistration(string primaryDescription, string secondaryDescription)
         {
             Console.Write("DESCRIÇÃO: ");
             primaryDescription = Console.ReadLine();

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ERP.Models;
+using ERP.Repositories;
 
 
 namespace ERP.Interface
@@ -30,11 +32,11 @@ namespace ERP.Interface
 
             switch (menuOption)
             {
-                case 0: RegistrationOptions.ProductRegistration(); break;
-                case 1: RegistrationOptions.GuideRegistration(); break;
-                case 2: RegistrationOptions.SalesOrderRegistration(); break;
-                case 3: RegistrationOptions.ProductionOrderRegistration(); break;
-                case 4: RegistrationOptions.ClientRegistration(); break;
+                case 0: RegistrationOption.ProductRegistration(); break;
+                case 1: RegistrationOption.GuideRegistration(); break;
+                case 2: RegistrationOption.SalesOrderRegistration(); break;
+                case 3: RegistrationOption.ProductionOrderRegistration(); break;
+                case 4: RegistrationOption.ClientRegistration(); break;
 
                 case 10: Environment.Exit(0); break;
 
